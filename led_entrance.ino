@@ -1,5 +1,12 @@
 //#include <Time.h>
 
+/**
+ ** @author Frans 'Jalict' Larsen
+ ** Script to check if a IR light is blocked by object, if not, then turn on a light for TIME_ON seconds.
+ ** Used for my home entrance to turn on some LED lights if I enter the house by night.
+ ** Currently works inverse for testing purpose
+ **/
+
 const int TIME_ON = 4; // How long the timer should be  (In seconds)
 
 void setup() {
@@ -15,12 +22,12 @@ void setup() {
 }
 
 void loop() {
-  //if(hour() > 19 || hour() < 8) {   // If time is between 19:00 and 8:00)
-    if(digitalRead(9) == 0) {       // If the door is opened
-      digitalWrite(8, true);        // Turn on the LED
-      delay(TIME_ON * 1000);        // And wait TIME_ON seconds
+  //if(hour() > 19 || hour() < 8) { // If time is between 19:00 and 8:00)
+    if(digitalRead(9)) {            // If the door is opened
+      digitalWrite(8, false);       // Turn on the LED
     } else {                        // If door is closed
-      digitalWrite(8, false);       // Turn off the LED
+      digitalWrite(8, true);        // Turn off the LED
+      delay(TIME_ON * 1000);        // And wait TIME_ON seconds
     }
   //}    
 }
